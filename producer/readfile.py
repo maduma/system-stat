@@ -8,11 +8,14 @@ def get_stream():
 
         def __init__(self, filename):
             self.f = open(filename, 'r')
+            self.nbr = 0
 
         def readline(self):
-            return self.f.readline()
+            self.nbr = self.nbr + 1
+            yield self.f.readline()
 
         def close(self):
+            print('{0} lines read'.format(self.nbr))
             self.f.close()
 
     period = 60 # seconds

@@ -19,9 +19,20 @@ We rely on an external os command to produce the stat
 The main logic is to run the program with parameters and read the output
 produced. Basicaly they are two input in this stage.
 
-### input
-- program location
-- program argument
-### ouput
+### output
 - character line stream
 - period of stat (e.g 60 sec)
+
+## Tranform the data
+We get the stream procuced in the first step and transform the data in graphite format.
+This module is also repossible for adding 'tags' to the stat (e.g hostname, zpool) and
+may also create new stat based on the input (e.g total bytes = rbytes + wbytes).
+We can also normalize stat here (e.g op/s, byte/s)
+
+### input (output of the previous task)
+- stream (line)
+- period in second
+
+# output
+- stream (line in graphite format)
+
